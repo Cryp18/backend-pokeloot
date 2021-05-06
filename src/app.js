@@ -34,7 +34,7 @@ app.use(
 app.use("/api/backend", router);
 
 //start server
-app.listen(app.get("port"),'0.0.0.0', () => {
+app.listen(app.get("port"), () => {
   console.clear();
   console.log(`lisent on port: ${app.get("port")}`);
   
