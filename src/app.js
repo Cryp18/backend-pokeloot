@@ -31,7 +31,7 @@ app.use(
 );
 
 //Routes
-app.use("/api/backend", router);
+app.use("/", router);
 
 //start server
 app.listen(app.get("port"), () => {
