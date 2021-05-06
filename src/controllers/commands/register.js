@@ -9,7 +9,7 @@ const getUserinfo = async(res, req) => {
         newUser.pokeUser = req.body.pokeUser;
         newUser.password = req.body.password;
         newUser.Profile = req.body.photo;
-        newUser.envelopes = 3;
+        newUser.envelopes = 20;
         return newUser;
     }
     return res.json({
