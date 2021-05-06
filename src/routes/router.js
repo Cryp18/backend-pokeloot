@@ -3,7 +3,9 @@ const controller = require('../controllers/controllers');
 const passport = require('passport');
 const users = require('../models/users');
 
-router.get('/', controller.listUsers);
+router.get('/', (req, res)=>{
+    res.send('hola');
+});
 
 
 router.post('/signin',(req, res)=>{
