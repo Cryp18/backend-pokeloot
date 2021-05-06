@@ -1,16 +1,15 @@
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
-const router = require("./routes/router.js");
-const path = require("path");
-const { db } = require("./databases/database");
+const router = require("./src/routes/router.js");
+const { db } = require("./src/databases/database");
 const session = require("express-session");
 const cookie = require("cookie-parser");
 const passport = require("passport");
 const cors = require("cors");
-const users = require('./models/users');
+const users = require('./src/models/users');
 
-require("./controllers/commands/auth");
+require("./src/controllers/commands/auth");
 
 //settings
 app.set("port", process.env.PORT || 3001);
@@ -31,7 +30,7 @@ app.use(
 );
 
 //Routes
-app.use("/", router);
+app.use("/api/backend/", router);
 
 //start server
 app.listen(app.get("port"), () => {
