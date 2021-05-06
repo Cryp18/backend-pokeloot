@@ -4,7 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "postinstall": "npm install",
     "dev": "nodemon src/index.js",
     "start": "node ./index.js"
   },
