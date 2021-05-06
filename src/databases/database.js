@@ -1,5 +1,5 @@
 const db = require('mongoose');
-const URI = 'mongodb://localhost:27017/min-proyect';
+const URI = 'mongodb+srv://Basededatosquesepuedehackearfacilmente:Milenio22@cluster0.u9tyt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 
 db.connect(URI, {
     useNewUrlParser: true,
