@@ -8,6 +8,4 @@ controller.pokeapp = pokeapp;
 controller.inventorySave = inventory.save;
 controller.InventoryGet = inventory.find;
 
-
-
 module.exports = controller;

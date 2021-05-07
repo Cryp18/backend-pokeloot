@@ -1,3 +1,4 @@
+const env = require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const app = express();
@@ -7,10 +8,8 @@ const session = require("express-session");
 const cookie = require("cookie-parser");
 const passport = require("passport");
 const cors = require("cors");
-const users = require('./src/models/users');
-const env = require('dotenv').config();
+const users = require("./src/models/users");
 require("./src/controllers/commands/auth");
-
 
 //settings
 app.set("port", process.env.PORT || 3001);
@@ -19,12 +18,23 @@ app.set("port", process.env.PORT || 3001);
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cookie());
-app.use(cors());
+
+if (process.env.NODE_ENV === "production") {
+  app.use((req, res, next) => {
+    res.append("Access-Control-Allow-Origin", ["*"]);
+    res.append("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.append("Access-Control-Allow-Headers", "Content-Type");
+    next();
+  });
+} else {
+  app.use(cors());
+}
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   session({
-    secret:  process.env.SECRET,
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -37,7 +47,7 @@ app.use("/api/backend/", router);
 app.listen(app.get("port"), () => {
   console.clear();
   console.log(`lisent on port: ${app.get("port")}`);
-  setInterval(async()=>{
-      await users.updateMany({}, {$set: {envelopes: 3}})
-  }, 86400000)
+  setInterval(async () => {
+    await users.updateMany({}, { $set: { envelopes: 3 } });
+  }, 86400000);
 });
