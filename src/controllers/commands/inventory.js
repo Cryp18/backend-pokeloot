@@ -22,6 +22,7 @@ const ordernar = (inventory, orden)=>{
   
   return ordenado;
 }
+
 inventory.find = async (req, res) =>{
     let myInventory = [];
     let id = req.params.id;
@@ -34,14 +35,21 @@ inventory.find = async (req, res) =>{
     }
     if(order === 'Pokemon'){
       return res.json(ordernar(myInventory, 'id'));
-    }else if(order === 'Date'){
+    }
+
+    else if(order === 'Date'){
       return res.json(myInventory);
-    }else if(order === 'Type'){
+    }
+    
+    else if(order === 'Type'){
       return res.json(ordernar(myInventory, 'type'))
-    }else if(order === 'Range'){
+
+    }
+    else if(order === 'Range'){
       let ordenado = myInventory.sort(function (a, b) {
         a.stack = 0;
         b.stack = 0;
+
         for(let stack in a.base){
           a.stack += a.base[stack];
         }
@@ -49,9 +57,11 @@ inventory.find = async (req, res) =>{
         for(let stack in b.base){
           b.stack += b.base[stack];
         }
+
         if (a.stack > b.stack) {
           return 1;
         }
+
         if (a.stack < b.stack) {
           return -1;
         }
@@ -65,9 +75,12 @@ inventory.find = async (req, res) =>{
 
 
 inventory.save = async (req, res) =>{
+
     let userId = req.body.userId;
     let pokemonId = req.body.pokemonId;
+
     const pokeUserFind = await users.findById(userId);
+
     if(pokeUserFind !== null && pokemonId > 0){
         let newInventory = new Inventory();
         newInventory.userId = userId;
@@ -75,6 +88,7 @@ inventory.save = async (req, res) =>{
 
         return newInventory;
     }
+    
     return res.json({
         inDataBase:true,
         message: 'Se encuentra en la base de oh',

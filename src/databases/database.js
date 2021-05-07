@@ -1,5 +1,6 @@
 const db = require('mongoose');
-const URI = 'mongodb+srv://Basededatosquesepuedehackearfacilmente:Milenio22@cluster0.u9tyt.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+require('dotenv').config();
+const URI = `${process.env.URI}`;
 
 db.connect(URI, {
     useNewUrlParser: true,

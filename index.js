@@ -8,8 +8,9 @@ const cookie = require("cookie-parser");
 const passport = require("passport");
 const cors = require("cors");
 const users = require('./src/models/users');
-
+const env = require('dotenv').config();
 require("./src/controllers/commands/auth");
+
 
 //settings
 app.set("port", process.env.PORT || 3001);
@@ -23,7 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(
   session({
-    secret: "binkzNoSake",
+    secret:  process.env.SECRET,
     resave: false,
     saveUninitialized: false,
   })
@@ -36,7 +37,6 @@ app.use("/api/backend/", router);
 app.listen(app.get("port"), () => {
   console.clear();
   console.log(`lisent on port: ${app.get("port")}`);
-  
   setInterval(async()=>{
       await users.updateMany({}, {$set: {envelopes: 3}})
   }, 86400000)
