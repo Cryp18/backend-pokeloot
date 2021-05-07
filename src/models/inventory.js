@@ -1,9 +1,8 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const inventorySchema =  new Schema({
-    userId: {type: String },
-    pokemonId: {type: Number},
-})
+const inventorySchema = new Schema({
+  userId: { type: String },
+  pokemonId: { type: Number },
+});
 
-
-module.exports = model('Inventory', inventorySchema);
+module.exports = model("Inventory", inventorySchema);

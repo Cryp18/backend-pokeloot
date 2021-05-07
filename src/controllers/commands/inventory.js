@@ -17,6 +17,7 @@ const ordernar = (inventory, orden) => {
 
   return ordenado;
 };
+
 const rankCal = (obj) => {
   const res = Object.entries(obj);
   const results = res.reduce((acc, current) => acc + current[1], 0);
